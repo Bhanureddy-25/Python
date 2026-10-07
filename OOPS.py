@@ -257,7 +257,7 @@ class HDFC(RBI):
 u1 = HDFC()
 print(u1.cash)
 u1.available_cash()
-u1.hdfc_cash
+u1.hdfc_cash()
 
 
 #Task 1 
@@ -329,7 +329,7 @@ u1 = Kid(450000,2500000)
 u1.father_prop()
 u1.kid_prop()
 
-'''
+
 
 #Method overriding --> when we define same method name in same parent class and also child class
 class Square:
@@ -351,3 +351,217 @@ obj1.area()
 #Method Overriding will only happen with only inheritance usage
 
 #Task-2: bring out a real time scenario for multiple inheritance
+
+
+class messages:
+    """base class-1"""
+    def send_message(self):
+        print("User sending messages")
+
+class voice_calls:
+    """base class-2"""
+    def voice_call(self):
+        print("User making voice calls")
+
+class users(messages,voice_calls):
+    """derived class"""
+    #pass
+    def video_call(self):
+        print("User making video calls")
+
+
+u1 = users()
+u1.voice_call()
+u1.send_message()
+u1.video_call()
+
+
+
+#Multilevel Inheritance --> 
+
+
+
+
+
+
+
+
+
+
+#whatsapp --> Users,Business Users,Premium users
+
+class users:
+    ""parent class""
+    def messages(self):
+        print("users can send messages")
+
+class Business_users(users):
+    child class-1
+    def create_catalogue(slef):
+        print("Users can create catalogue along with sending messages")
+
+class Premium_users(Business_users):
+    2nd child
+    def customize_avatars(self):
+        print("User can customize Avatars along with catalogue creation and sending messages")
+            
+
+u1 = users()
+u2 = Business_users()
+u3 = Premium_users()
+
+
+u1.messages()
+#u2.messages()
+u2.create_catalogue()
+#u3.messages()
+#u3.create_catalogue()
+u3.customize_avatars()
+
+
+
+
+#Hybrid Inheritance
+
+
+
+class users:
+    """parent class"""
+    def messages(self):
+        print("users can send messages")
+
+class Business_users(users):
+    """child class-1"""
+    def create_catalogue(slef):
+        print("Users can create catalogue along with sending messages")
+
+class Premium_users(Business_users):
+    """child class-2"""
+    def customize_avatars(self):
+        print("User can customize Avatars along with catalogue creation and sending messages")
+
+class Standard_user(users):
+    """second child for the parent class users"""
+    def post_staus(self):
+        print("users can post status")
+
+class elite_users(Premium_users,Standard_user):
+    """Hybrid inheriting from both first child and second child"""
+    def exclusive_features(slef):
+        print("User can Perform both the Features that Standard User and Premium User have Access")
+
+
+u1 = users()
+u2 = Business_users()
+u3 = Premium_users()
+u4 = Standard_user()
+u5 = elite_users()
+
+
+
+
+u1.messages()
+u2.create_catalogue()
+u3.customize_avatars()
+u4.post_staus()
+u5.exclusive_features()
+
+
+
+
+
+#polymorphism --> 
+#            poly --> many
+#            morph --> forms
+#method Overloading.method Overriding,Operator
+
+class Hotstar:
+    """Method Overloading"""
+    def watch(slef):
+        print("user has logged in")
+    def watch(self,movie):
+        self.movie = movie
+        print(f'User is watching {self.movie}')
+u1 = Hotstar()
+u1.watch("IRON MAN")
+
+
+
+
+class Hotstar:
+    """Method Overloading using default arguments"""
+    def watch(self,movie = None):
+        self.movie = movie
+        if movie == None:
+            print("User logged in")
+        else:
+            print(f'User is watching {self.movie}')
+
+
+u1 = Hotstar()
+u1.watch()
+u1.watch('DC')
+
+
+
+#method overloading with variable length arguments
+
+
+class Hotstar:
+    """Method Overloading with *Args usage"""
+
+    def add_to_list(self,*movies):
+        print(movies)
+        for movie in movies:
+            print(f'User is watching {movie}')
+
+
+u1 = Hotstar()
+u1.add_to_list('DC','LEO','IRON MAN','CAPTIAN AMERICA','THOR')
+
+
+
+#Method overloading based on Type
+
+
+
+class Hotstar:
+    """MOL with type of args usage"""
+    def movieslist(self,content):
+        self.content = content
+        if isinstance(content,str):
+            print(f'User is watching {self.content}')
+        elif isinstance(content,list):
+            print('Movie is added to watch list')
+            for movie in content:
+                print(f'User started watching {movie}')
+
+
+
+
+user = Hotstar()
+user.movieslist("Vikram")
+fav_movies = (['vikram','salaar','DC','LEO','TAMATI'])
+user.movieslist(fav_movies)
+
+'''
+#Method Overloading --> if same method is used in both base and derived
+
+class freeuser:
+    """Free User access"""
+    def watch(self):
+        print('Free user is watching the movie with adds')
+
+
+class VIPuser(freeuser):
+    """VIP user Access"""
+    def watch(self):
+        print('VIP user is watching without adds')
+
+class Premiumuser(VIPuser):
+    """Premium user Access"""
+    def watch(self):
+        print('Premium user watches live content')
+
+
+u1 = Premiumuser
